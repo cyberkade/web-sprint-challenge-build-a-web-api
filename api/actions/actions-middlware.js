@@ -36,8 +36,8 @@ function validateNewAction(req, res, next) {
   }
 
 function validateUpdatedAction(req, res, next) {
-    const { name, description, completed} = req.body
-      if(name && name.trim() && description && description.trim() && typeof completed === 'boolean'){
+    const { notes, description, completed, project_id } = req.body
+      if(notes && description && description.length <= 128 && project_id && typeof completed === 'boolean'){
         req.newAction = req.body
         next()
       } else {

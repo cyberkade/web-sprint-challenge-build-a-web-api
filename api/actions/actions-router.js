@@ -34,4 +34,26 @@ actionsRouter.post('/' , validateNewAction, async (req, res, next) => {
     }
 })
 
+actionsRouter.put('/:id', validateActionId, validateUpdatedAction, async (req, res, next) => {
+    try {
+        const updatedAction = await Actions.update(req.params.id, req.newAction)
+        res.status(200).json(updatedAction)
+    }
+    catch (err) {
+        next(err)
+    }
+})
+
+
+actionsRouter.delete('/:id', validateActionId, async (req, res, next) => {
+    try {
+        await Actions.remove(req.params.id)
+        res.status(200)
+        next()
+    }
+    catch (err) {
+        next(err)
+    }
+})
+
 module.exports = actionsRouter

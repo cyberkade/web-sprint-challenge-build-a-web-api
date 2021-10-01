@@ -44,7 +44,6 @@ actionsRouter.put('/:id', validateActionId, validateUpdatedAction, async (req, r
     }
 })
 
-
 actionsRouter.delete('/:id', validateActionId, async (req, res, next) => {
     try {
         await Actions.remove(req.params.id)

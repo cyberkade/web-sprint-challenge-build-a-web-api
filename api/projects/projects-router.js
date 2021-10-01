@@ -44,4 +44,25 @@ projectsRouter.put('/:id', validateProjectId, validateUpdatedProject, async (req
     }
 })
 
+projectsRouter.delete('/:id', validateProjectId, async (req, res, next) => {
+    try {
+        await Projects.remove(req.params.id)
+        res.status(200)
+        next()
+    }
+    catch (err) {
+        next(err)
+    }
+})
+
+projectsRouter.get('/:id/actions', validateProjectId, async (req, res, next) => {
+    try {
+        const actions = await Projects.getProjectActions(req.params.id)
+        res.status(200).json(actions)
+    }
+    catch (err) {
+        next(err)
+    }
+})
+
 module.exports = projectsRouter;

@@ -1,6 +1,6 @@
 const express = require('express')
 const Projects = require('./projects-model')
-const { validateProjectId, validateProject } = require('./projects-middleware')
+const { validateProjectId, validateNewProject, validateUpdatedProject } = require('./projects-middleware')
 
 const projectsRouter = express.Router()
 
@@ -24,10 +24,20 @@ projectsRouter.get('/:id', validateProjectId, async (req, res, next) => {
     }
 })
 
-projectsRouter.post('/', validateProject, async (req, res, next) => {
+projectsRouter.post('/', validateNewProject, async (req, res, next) => {
     try {
-        const newProject = await Projects.insert(req.project)
-        res.status(200).json(newProject)
+        const newProject = await Projects.insert(req.newProject)
+        res.status(201).json(newProject)
+    }
+    catch (err) {
+        next(err)
+    }
+})
+
+projectsRouter.put('/:id', validateProjectId, validateUpdatedProject, async (req, res, next) => {
+    try {
+        const updatedProject = await Projects.update(req.params.id, req.newProject)
+        res.status(200).json(updatedProject)
     }
     catch (err) {
         next(err)

@@ -25,19 +25,30 @@ async function validateProjectId(req, res, next) {
     }
   }
   
-function validateProject(req, res, next) {
+function validateNewProject(req, res, next) {
     const { name, description } = req.body
       if(name && name.trim() && description && description.trim()){
-        req.project = req.body
+        req.newProject = req.body
         next()
       } else {
         next({status: 400, message: "missing required fields"})
       }
   }
-  
+
+function validateUpdatedProject(req, res, next) {
+    const { name, description, completed} = req.body
+      if(name && name.trim() && description && description.trim() && typeof completed === 'boolean'){
+        req.newProject = req.body
+        next()
+      } else {
+        next({status: 400, message: "missing required fields"})
+      }
+  }
+
 module.exports = {
     logger,
     errorHandling,
     validateProjectId,
-    validateProject
+    validateNewProject,
+    validateUpdatedProject
   }

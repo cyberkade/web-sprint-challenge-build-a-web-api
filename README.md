@@ -147,7 +147,21 @@ We have provided test data for all the resources.
 Be prepared to demonstrate your understanding of this week's concepts by answering questions on the following topics. You might prepare by writing down your own answers before hand.
 
 1. The core features of Node.js and Express and why they are useful.
-1. Understand and explain the use of Middleware.
-1. The basic principles of the REST architectural style.
-1. Understand and explain the use of Express Routers.
-1. Describe tooling used to manually test the correctness of an API.
+  - Node.js provides access to hundreds of thousands of reusable packages, which allows developers to create all kinds of server-side tools and apps in JavaScript. When using Node you are writing in CommonJS and running directly on a computer/server OS. Meanwhile, Express is the most popular Framework for Node, and for a good reason. With Express you can set up routes to handle requests at different paths, use additional middleware at any point in the request handling pipeline, and more.
+
+2. Understand and explain the use of Middleware.
+  - Middleware is used to look at the request body at some point in the pipeline. With middleware you can alter, verify, or do pretty much do anything you want to the request body, then keep sending it along the correct path depending on what you're middleware's functionality is. There is a bunch of existing middleware already, but you can create custom middleware if needed. (Using middleware is extremely useful for handling errors)
+
+3. The basic principles of the REST architectural style.
+  - Everything is a resource. 
+  - Each resource is accessible via a unique URI. 
+  - Resources can have multiple representations. 
+  - Communication happens over a stateless protocol (HTTP). 
+  - Resource management happens via HTTP methods 
+  Applying the REST architecture to our APIs can make them scalable and simpler to maintain and extend.
+ 
+4. Understand and explain the use of Express Routers.
+  - By using Express Routers you can organize routes into seperate files, which keeps your code modularized. The labor on our end is minimal, and the code is much cleaner to look at from a developers perspective
+
+5. Describe tooling used to manually test the correctness of an API.
+  - HTTPIE, POSTMAN, and INSOMNIA are all used to manually test API endpoints. These tools are used to send mock requests to the API, allowing us to see if the endpoint works as intended
